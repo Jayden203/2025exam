@@ -300,3 +300,117 @@ Here is the expected output.
 A graph with numbers and a bar
 
 AI-generated content may be incorrect.
+
+Part 2: Java question
+You will develop classes to implement a minimal turn-based game involving a hero who reads books to learn new skills and uses those skills to battle enemies.
+
+The tasks will get harder as you progress, and build on each other, so try to ensure that you complete each stage before moving on. Be sure to read through the entire specification before you begin to get a sense of all the features that might be needed.
+
+In each task, marks will be awarded for clean code and sensible object-oriented design choices as well as functionality.
+
+We have provided a class, ExamHarness, with a main method that you can use to test your code before submitting. Note that this method will show errors until you have completed the tasks below. You should feel free to modify ExamHarness as you need to test your own code. You will not submit ExamHarness for marking.
+
+Download ExamHarness.java here.
+
+Java Task 1: Representing a hero [10 marks total]
+We have provided initial versions of an enumerated type Skill and the skeleton of the Hero class that you should use for this task, which are both in the game package. You must use these classes: do not change the name of the classes or the package.
+
+Download the starter files here:
+
+Skill.java
+Hero.java
+For our purposes, a hero has the following properties:
+
+Name: Each hero has a name which must be at least 3 characters long.
+Hit points:
+When a hero is initially created, a maximum HP value is specified, which must be a positive integer. The hero’s initial HP should be set to the max.
+When a hero’s HP is updated during gameplay, it should always stay within the range 0..max.
+Skill: The current skill that the hero has equipped, represented using the provided Skill enumeration.
+When a new hero is created, the skill should be set to Skill.NONE.
+Task 1a [4 marks]
+Write some code to represent a hero. You should use the provided Hero class as the starting point for this class, but the specific details of the implementation are up to you. Make sure to include a constructor that sets all properties.
+
+Task 1b [2 marks]
+Add getter methods for all properties, and setter methods for the name, current HP, and current skill.
+
+Task 1c [4 marks]
+Modify your constructor and get/set methods to ensure that the field values are always valid, following the specification above. If someone tries to create or update a hero with invalid values, then an IllegalArgumentException should be thrown, and the change should not take effect.
+
+Java task 2: Library service and books [15 marks total]
+Task 2a [5 marks]
+Create a class called Book to represent the properties of a book that the hero can read to learn a new skill. The properties should include:
+
+A title (represented as a String);
+An author (represented as a String);
+A number of pages (represented as an integer); and
+A skill to be learned (represented using the Skill enumeration)
+Your Book class should have a constructor that sets all fields, and getter methods for all properties. You should also override the equals method so that two books are considered equal if the title and author are the same. You do not need to do any error checking on the book properties and do not need to implement setters.
+
+Also add a method to the Hero class with the following signature and behaviour:
+
+public void readBook (Book book)
+
+This method should update the hero’s current skill to the skill provided by the book and print a message to System.out “<HeroName> has read '<Title>' and now knows: <Skill>”
+
+Task 2b [2 marks]
+Define a class Library that stores a collection of Books. The collection should be initially empty.
+
+Add a method to Library with the following signature and behaviour:
+
+public void addBook (Book book)
+
+This method should add the indicated book to the collection. You do not need to check for duplicates, it is fine if multiple copies of a book are in the collection. 
+
+Task 2c [4 marks]
+Add a method to your Library class with the following signature and behaviour.
+
+public boolean removeBook (Book book)
+
+This method should look for a book in the collection that matches the input parameter (using equals()). If a matching book is found, remove it from the collection and return true. If no matching book is found, do nothing and return false.
+
+Task 2d [4 marks]
+Add one more method to your Library class with the following signature and behaviour.
+
+public boolean assignBestSkillBook(Hero hero, Skill desiredSkill)
+
+If the hero already knows the desired skill, this method should return false and make no further changes
+Otherwise, this method should find all books in the library that provide the desired skill – if no such books exist, the method should return false and make no further changes.
+Otherwise, it should search through the books that can provide the desired skill and choose the one with the fewest pages. With the chosen book:
+Call Hero.read() with the chosen book
+Remove it from the library using Library.removeBook()
+Return true
+Java Task 3: Enemies and battle [15 marks total]
+You will implement a simple class to represent an Enemy, as well as a BattleArena class that runs a turn-based alternating fight between a hero and an enemy.
+
+Task 3a [4 marks]
+Create a class called Enemy to represent the basic details of an enemy in the video game. An enemy should have name and hit points properties which should behave the same as those for a hero as described above, and you should define getters and setters for both properties with validation as for the hero.
+
+Task 3b [5 marks]
+Define an attack method in your Hero class and your Enemy class, with the following signatures and behaviour:
+
+public void Hero.attack (Enemy enemy)
+
+This method should reduce the given enemy’s hit points by a value depending on the hero’s current skill. Make sure that the enemy’s hit points value never goes below zero.
+
+NONE: decrease by 1
+SWORDPLAY: decrease by 3
+FIREBALL: decrease by 4
+ public void Enemy.attack (Hero hero)
+
+This method should reduce the hero’s hit points by 2 every time the enemy attacks. Make sure that the hero’s hit points value never goes below zero.
+
+Task 3c [6 marks]
+Implement a class BattleArena with a single static method with the following signature and behaviour:
+
+public static boolean fightToTheEnd (Hero hero, Enemy enemy)
+
+This method should loop until either the hero or the enemy is defeated (i.e., has hit points = 0). The hero should attack first (using the above attack method), then the enemy should attack, and this pattern should continue until one is defeated. You should check for defeat after every time an attack is made by either the hero or the enemy. The return value of this method should be true if the hero wins (i.e., if the enemy is defeated), and false if the enemy wins.
+
+Submission
+Upload all of your .java files below, including the final versions of:
+
+Skill.java
+Hero.java
+Library.java
+Enemy.java
+BattleArena.java
