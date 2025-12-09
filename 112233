@@ -1,1 +1,302 @@
+Part 1: Python Question
+This question consists of three tasks. You should create a single Python source file and write the code for each task in the same file. You should name the file your_name_python_task.py (fill in your own name).
 
+Python Task 1: Python Basics and Data Manipulation [13 Marks]
+You have been provided with a CSV file, shop_sales.csv, containing sales data for a shop. The file contains the following columns: Date, Item, Category, and Units_Sold (this is the number of units sold that day). Your task is to write a Python program that performs the following operations:
+
+Task 1a: Data Loading and Preprocessing
+Load the Data: Load the CSV file into a Pandas DataFrame. Print the first 5 rows and the DataFrame shape. [2 marks]
+The output should be similar to this one when the code is run.
+
+=== Task 1a-1: Data Loaded ===
+
+         Date        Item     Category  Units_Sold
+
+0  13/06/2025      Laptop  ELECTRONICS        95.0
+
+1  12/03/2025      Marker   STATIONERY        18.0
+
+2  27/01/2025       Mouse  ELECTRONICS         5.0
+
+3  08/01/2024  Headphones  ELECTRONICS        30.0
+
+4  10/05/2025  Headphones  Electronics        92.0
+
+Shape: (50, 4)
+
+ 
+
+2.      Data Cleaning:
+
+Convert the Date column to a datetime object. Print the column type for Date . [2 marks]
+Here is the example output when the code is run.
+
+=== Task 1a-2: Date dtype after conversion ===
+
+datetime64[ns]
+
+ 
+
+Check for and handle missing values. If any are found, fill them with appropriate values. Print the number of missing values after filling.  [2 marks]
+Here is an example of the expected output.
+
+=== Task 1a-2: Missing Values ===
+
+Total missing values BEFORE fill/drop: 5
+
+Total missing values AFTER fill/drop: 0
+
+ 
+
+Ensure all Category values are uppercase. Print the unique values of Category [2 marks]
+This is the expected output when the code is run.
+
+Unique Category values (uppercased): ['CLOTHING', 'ELECTRONICS', 'GROCERY', 'STATIONERY']
+
+ 
+
+Task 1b: Data Visualisation
+Create a bar chart showing total units sold per category and print the total per category. [2 marks]
+Here is the print output when the code is run.
+
+=== Task 1b-1: Total Units per Category ===
+
+Category
+
+ELECTRONICS    779
+
+STATIONERY     644
+
+CLOTHING       579
+
+GROCERY        506
+
+Name: Units_Sold, dtype: int32
+
+ 
+
+Here is the plot output when the code is run.
+
+
+
+ 
+
+Unit Sold per Month: Create a line chart showing the total units sold per month in 2025. The x-axis should represent the months, and the y-axis should represent the total sales.  You must print the total Units per month in 2025. [3 mark]
+The print output should be similar to this when the code is run:
+
+=== Task 1b-2: Total Units per Month in 2025 ===
+
+YearMonth
+
+2025-01-01    290
+
+2025-02-01    278
+
+2025-03-01    365
+
+2025-04-01    237
+
+2025-05-01    534
+
+2025-06-01    497
+
+Name: Units_Sold, dtype: int32
+
+ 
+
+The line chart should match the example chart below when the code is run:
+
+
+
+ 
+
+Python Task 2: Python Database Management and File Handling [17 marks]
+Problem: Managing Sales Data with SQLite. You must store, query, and export the cleaned sales data processed in Part 1 using SQLite and CSV files.
+
+Task 2a: Database Creation and Data Insertion
+Create an SQLite database named ShopDB. [1 mark]
+Create a table named Sales with appropriate columns to store the data (Date, Item, Category, Units_Sold ). [2 marks]
+Insert the cleaned and processed data from Python Task 1 into the Sales table. Ensure no duplicate entries are added. Print the number of rows inserted.  [3 marks]
+The output should be similar to the one below when the code is run.
+
+ 
+
+=== Task 2a-3: Insert Summary ===
+
+Rows before: 0
+
+Rows after:  50
+
+Rows inserted (non-duplicates): 50
+
+ 
+
+Task 2b: Querying the Database and Exporting to a File
+Total Units Sold Calculation: Write a query to calculate total units sold in 2025 and display the result. [3 marks]
+The output should be similar to the one below when the code is run.
+
+ 
+
+=== Task 2b-1: Total Units Sold in 2025 ===
+
+2201
+
+ 
+
+Top Items Sold in 2025 Summary: Write a query to list the top 5 items by units sold in 2025 and save the result to a CSV file called top_items.csv. Print the DataFrame before saving. [4 marks]
+The output of the print should be similar to this when the code is run:
+
+=== Task 2b-2: Top 5 Items in 2025 (Preview before saving) ===
+
+         Item  Total_Units_Sold
+
+0      Eraser               210
+
+1  Headphones               203
+
+2       Bread               193
+
+3      Laptop               180
+
+4      Tablet               150
+
+ 
+
+Task 2c: Append New Data to File
+After saving top_items.csv, write a code to append a new row with the following values to the top_items.csv:
+
+Item = "Calculator"
+Total_Units_Sold = 120
+Then read and print the updated file to confirm the row was added. [4 marks]
+
+The output should be similar to this when the code is run:
+
+ 
+
+=== Task 2c: Append New Row to CSV and Verify ===
+
+Updated 'top_items.csv':
+
+         Item  Total_Units_Sold
+
+0      Eraser               210
+
+1  Headphones               203
+
+2       Bread               193
+
+3      Laptop               180
+
+4      Tablet               150
+
+5  Calculator               120
+
+ 
+
+Python Task 3: Data Logging and Visualisation [10 marks]
+In this task, you will write a Python script that records user data to a CSV file, performs simple analysis with pandas and NumPy, and visualises the results using matplotlib.
+
+Task 3a: CSV File Setup
+1.      Create a new file named people.csv with the columns:  Name, Age [1 mark]
+
+2.      If the file already exists, your script should not overwrite it; instead, it should append new data to the end of the file. Your code should print an appropriate message depending on whether the file was created new or opened for appending.
+
+If the .csv file was newly created, the output should be as follows [0.5 mark]:
+
+=== Task 3a: File Setup ===
+
+File 'people.csv' created with a header.
+
+If the .csv file was opened for appending, the output should be as follows [0.5 mark]:
+
+=== Task 3a: File Setup ===
+
+File 'people.csv' found. Appending new records...
+
+Task 3b: Data Entry 
+1.      Prompt the user to enter one or more records of people’s names and ages. [1 mark]
+
+2.      The user can stop entering data by typing q as the name. [1 mark]
+
+3.      Each valid record should be appended as a new row in the CSV file. [1 mark]
+
+Here are the output and interaction for this task when the code is run. When testing your code, ensure you enter the same records (Name and age) as shown below. They are necessary for the remaining tasks. 
+
+=== Task 3b: Data Entry ===
+
+Enter one or more records. Type 'q' as the name to finish.
+
+Enter name (or 'q' to quit): Mireilla
+
+Enter age: 80
+
+Enter name (or 'q' to quit): Linda
+
+Enter age: 20
+
+Enter name (or 'q' to quit): Ali
+
+Enter age: 28
+
+Enter name (or 'q' to quit): Gus
+
+Enter age: 22
+
+Enter name (or 'q' to quit): Omar
+
+Enter age: 45
+
+Enter name (or 'q' to quit): Yang
+
+Enter age: 24
+
+Enter name (or 'q' to quit): Zhang
+
+Enter age: 25
+
+Enter name (or 'q' to quit): Manu
+
+Enter age: 32
+
+Enter name (or 'q' to quit): q
+
+Data saved to people.csv
+
+Task 3c: Data Summary and Statistics 
+After saving the new records, use pandas to read the entire CSV file into a DataFrame.
+Print:
+
+·        The total number of records [0.5 mark]
+
+·        The average age [0.5 mark]
+
+·        The minimum age [0.5 mark]
+
+·        The maximum age [0.5 mark]
+
+Save the summary to a text file called summary.txt [0.5 mark]
+
+This is the output when the code is run (make sure you open summary.txt to check that it contains the saved information):
+
+=== Task 3c: Summary Statistics ===
+
+Total records: 8
+
+Average age: 34.5
+
+Youngest age: 20
+
+Oldest age: 80
+
+Summary saved to summary.txt
+
+Task 3d: Visualisation
+Using matplotlib, create a simple visualisation of the age data to show the distribution of ages. [2.5 marks]
+
+The output should be a histogram of age frequencies, similar to the example shown when the code is first run.
+
+Here is the expected output.
+
+A graph with numbers and a bar
+
+AI-generated content may be incorrect.
